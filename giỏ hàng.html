@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let idd = 0;
+    function Product(id, name, price, total) {
+        this.id = idd++;
+        this.name = name;
+        this.price = price;
+        this.total = total;
+    }
+
+    function Cart() {
+        this.listProduct = [];
+
+        this.addProduct = function (product) {
+            return this.listProduct.push(product)
+        };
+        this.removeProduct = function (product) {
+            let a = 0;
+            for (let i = 0; i < this.listProduct.length; i++) {
+                if (product == this.listProduct[i]) {
+                    a = i;
+                }
+            }
+            let b = this.listProduct[0];
+            this.listProduct[0] = this.listProduct[a];
+            this.listProduct[a] = b;
+            this.listProduct.shift();
+        };
+        this.showProduct = function () {
+            for (let i = 0; i < this.listProduct.length; i++) {
+                document.write("san pham " + (i + 1) + ": " + this.listProduct[i].name + "<br>");
+            }
+        };
+        this.editProduct = function (product,newPrice,newTotal) {
+            product.price = newPrice;
+            product.total = newTotal;
+        }
+    }
+
+
+    let product1 = new Product(44, "phone", 100, 56);
+    let product2 = new Product(4, "phne", 10, 56);
+    let cart1 = new Cart("");
+
+
+</script>
+</body>
+</html>
